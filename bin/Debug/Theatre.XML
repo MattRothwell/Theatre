@@ -1,0 +1,188 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Theatre</name>
+  </assembly>
+  <members>
+    <member name="T:Theatre.ITheatre">
+      <summary>
+            Interface class gives the basic set up of the implementation class outlining the functions and properties used
+            </summary>
+    </member>
+    <member name="P:Theatre.ITheatre.available">
+      <summary>
+            Each performance in a theatre will hold the available tickets value
+            </summary>
+    </member>
+    <member name="P:Theatre.ITheatre.seats">
+      <summary>
+            An array of the Seat struct allows each seat to hold the state and customer
+            </summary>
+    </member>
+    <member name="T:Theatre.CTheatre">
+      <summary>
+            Abstract class holds the contracts the implementation class must satisfy
+            </summary>
+    </member>
+    <member name="T:Theatre.state">
+      <summary>
+            Enumerated states for eat seat in a performance
+            </summary>
+    </member>
+    <member name="F:Theatre.state.empty">
+      <summary>
+            Empty is 0 and all seats are set up with the value 0 which allows the theatre to see if it is still empty
+            </summary>
+    </member>
+    <member name="F:Theatre.state.reserved">
+      <summary>
+            once a seat has been reserved the state of the seat will change to reserved
+            </summary>
+    </member>
+    <member name="F:Theatre.state.purchased">
+      <summary>
+            when the seat is bought its state can then be changed to purchased
+            </summary>
+    </member>
+    <member name="F:Theatre.state.unused">
+      <summary>
+            Seats which are not needed for a performance
+            </summary>
+    </member>
+    <member name="T:Theatre.Seat">
+      <summary>
+            struct to store the seats state and customer associated with it
+            </summary>
+    </member>
+    <member name="F:Theatre.Seat.state">
+      <summary>
+            storing the seat state for a performance
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "F:Theatre.Seat.customer" -->
+    <member name="T:Theatre.Theatre">
+      <summary>
+            Implementation class which contains the methods and functions of the theatre
+            </summary>
+      <invariant>max &gt; 0 &amp;&amp; max &lt;= 150</invariant>
+      <invariant>available &lt;= max</invariant>
+      <invariant>performanceStart ? available &gt;= 0 : available &gt;= (max * safetyNum)</invariant>
+    </member>
+    <member name="M:Theatre.Theatre.ObjectInvariant">
+      <summary>
+             Invariants for the performance which it must meet in any method
+            </summary>
+    </member>
+    <member name="M:Theatre.Theatre.#ctor(System.Int32)">
+      <summary>
+            constructor to set up theatre for new performance
+            </summary>
+      <param name="seatsRequired">Holds the amount of seats needed for a performance</param>
+    </member>
+    <member name="P:Theatre.Theatre.Theatre#ITheatre#available">
+      <summary>
+            returning the value of available to the interface
+            </summary>
+    </member>
+    <member name="P:Theatre.Theatre.Theatre#ITheatre#seats">
+      <summary>
+            returning the seats to the interface
+            </summary>
+    </member>
+    <member name="P:Theatre.Theatre.Theatre#ITheatre#max">
+      <summary>
+            returning the max number of seats to the interface
+            </summary>
+    </member>
+    <member name="M:Theatre.Theatre.buySeat(System.Int32,System.Int32)">
+      <summary>
+            Customer can Buy seat for one performance
+            </summary>
+      <param name="customer">Customer id which will be placed into the seat struct</param>
+      <param name="seat">Seat number which will be placed into the seat struct</param>
+      <returns>true</returns>
+      <requires inheritedFrom="M:Theatre.ITheatre.buySeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="customer &gt; 0" vb="customer &gt; 0">customer &gt; 0</requires>
+      <requires inheritedFrom="M:Theatre.ITheatre.buySeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="seat &gt; 0 &amp;&amp; !(seat &gt; this.max)" vb="seat &gt; 0 AndAlso Not seat &gt; Me.max">seat &gt; 0 &amp;&amp; !(seat &gt; this.max)</requires>
+      <ensures inheritedFrom="M:Theatre.ITheatre.buySeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="this.seats[seat].state.Equals((object)2)" vb="Me.seats(seat).state.Equals(((Object)2))">this.seats[seat].state.Equals((object)2)</ensures>
+    </member>
+    <member name="M:Theatre.Theatre.cancelReservations">
+      <summary>
+            Remove all reservations for a performance
+            </summary>
+      <returns>True</returns>
+      <ensures inheritedFrom="M:Theatre.ITheatre.cancelReservations" inheritedFromTypeName="ITheatre" csharp="this.available.Equals(this.max)" vb="Me.available.Equals(Me.max)">this.available.Equals(this.max)</ensures>
+    </member>
+    <member name="M:Theatre.Theatre.checkAvailability">
+      <summary>
+            check to see there are any seats left to book
+            </summary>
+      <returns>Amount of seats left to purchase/reserve</returns>
+    </member>
+    <member name="M:Theatre.Theatre.checkCustomer(System.Int32)">
+      <summary>
+            check to see if a customer has a seat
+            </summary>
+      <param name="seat">seat number that will be checked to see if a customer has bought it</param>
+      <returns />
+      <requires inheritedFrom="M:Theatre.ITheatre.checkCustomer(System.Int32)" inheritedFromTypeName="ITheatre" csharp="seat &gt; 0 &amp;&amp; !(seat &gt; this.max)" vb="seat &gt; 0 AndAlso Not seat &gt; Me.max">seat &gt; 0 &amp;&amp; !(seat &gt; this.max)</requires>
+    </member>
+    <member name="M:Theatre.Theatre.printSeatingPlan">
+      <summary>
+            generate a visual for the layout of seats for a performance 
+            </summary>
+      <returns>Returns a layout for the seats of a performance</returns>
+    </member>
+    <member name="M:Theatre.Theatre.removeReserved">
+      <summary>
+            when there is only 2 hours left till the performance the reserved seats will become available again
+            </summary>
+    </member>
+    <member name="M:Theatre.Theatre.reserveSeat(System.Int32,System.Int32)">
+      <summary>
+            Customer can reserve seat for one performance
+            </summary>
+      <param name="customer">Customer number to be stored into the seat struct</param>
+      <param name="seat">the seat number which stores the customer and state</param>
+      <returns>True</returns>
+      <requires inheritedFrom="M:Theatre.ITheatre.reserveSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="customer &gt; 0" vb="customer &gt; 0">customer &gt; 0</requires>
+      <requires inheritedFrom="M:Theatre.ITheatre.reserveSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="seat &gt; 0 &amp;&amp; seat &lt; this.max" vb="seat &gt; 0 AndAlso seat &lt; Me.max">seat &gt; 0 &amp;&amp; seat &lt; this.max</requires>
+      <ensures inheritedFrom="M:Theatre.ITheatre.reserveSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="(double)this.available &gt;= (double)this.max * 0.04" vb="(()Me.available) &gt;= (()Me.max) * 0.04">(double)this.available &gt;= (double)this.max * 0.04</ensures>
+      <ensures inheritedFrom="M:Theatre.ITheatre.reserveSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="this.seats[seat].state == (Theatre.state)1" vb="Me.seats(seat).state = ((Theatre.state)1)">this.seats[seat].state == (Theatre.state)1</ensures>
+    </member>
+    <member name="M:Theatre.Theatre.returnSeat(System.Int32,System.Int32)">
+      <summary>
+            Customer can return seat reservation for one performance
+            </summary>
+      <param name="customer">customer value to check seat matches</param>
+      <param name="seat">seat number that the customer should be assigned to</param>
+      <returns>True</returns>
+      <requires inheritedFrom="M:Theatre.ITheatre.returnSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="this.available &lt; this.max" vb="Me.available &lt; Me.max">this.available &lt; this.max</requires>
+      <requires inheritedFrom="M:Theatre.ITheatre.returnSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="customer &gt; 0" vb="customer &gt; 0">customer &gt; 0</requires>
+      <requires inheritedFrom="M:Theatre.ITheatre.returnSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="seat &gt; 0 &amp;&amp; seat &lt; this.max" vb="seat &gt; 0 AndAlso seat &lt; Me.max">seat &gt; 0 &amp;&amp; seat &lt; this.max</requires>
+      <ensures inheritedFrom="M:Theatre.ITheatre.returnSeat(System.Int32,System.Int32)" inheritedFromTypeName="ITheatre" csharp="this.seats[seat].customer == default(int) &amp;&amp; this.seats[seat].state == (Theatre.state)0" vb="Me.seats(seat).customer = Nothing AndAlso Me.seats(seat).state = ((Theatre.state)0)">this.seats[seat].customer == default(int) &amp;&amp; this.seats[seat].state == (Theatre.state)0</ensures>
+    </member>
+    <member name="M:Theatre.ITheatre.reserveSeat(System.Int32,System.Int32)">
+      <requires csharp="customer &gt; 0" vb="customer &gt; 0">customer &gt; 0</requires>
+      <requires csharp="seat &gt; 0 &amp;&amp; seat &lt; this.max" vb="seat &gt; 0 AndAlso seat &lt; Me.max">seat &gt; 0 &amp;&amp; seat &lt; this.max</requires>
+      <ensures csharp="(double)this.available &gt;= (double)this.max * 0.04" vb="(()Me.available) &gt;= (()Me.max) * 0.04">(double)this.available &gt;= (double)this.max * 0.04</ensures>
+      <ensures csharp="this.seats[seat].state == (Theatre.state)1" vb="Me.seats(seat).state = ((Theatre.state)1)">this.seats[seat].state == (Theatre.state)1</ensures>
+    </member>
+    <member name="M:Theatre.ITheatre.buySeat(System.Int32,System.Int32)">
+      <requires csharp="customer &gt; 0" vb="customer &gt; 0">customer &gt; 0</requires>
+      <requires csharp="seat &gt; 0 &amp;&amp; !(seat &gt; this.max)" vb="seat &gt; 0 AndAlso Not seat &gt; Me.max">seat &gt; 0 &amp;&amp; !(seat &gt; this.max)</requires>
+      <ensures csharp="this.seats[seat].state.Equals((object)2)" vb="Me.seats(seat).state.Equals(((Object)2))">this.seats[seat].state.Equals((object)2)</ensures>
+    </member>
+    <member name="M:Theatre.ITheatre.returnSeat(System.Int32,System.Int32)">
+      <requires csharp="this.available &lt; this.max" vb="Me.available &lt; Me.max">this.available &lt; this.max</requires>
+      <requires csharp="customer &gt; 0" vb="customer &gt; 0">customer &gt; 0</requires>
+      <requires csharp="seat &gt; 0 &amp;&amp; seat &lt; this.max" vb="seat &gt; 0 AndAlso seat &lt; Me.max">seat &gt; 0 &amp;&amp; seat &lt; this.max</requires>
+      <ensures csharp="this.seats[seat].customer == default(int) &amp;&amp; this.seats[seat].state == (Theatre.state)0" vb="Me.seats(seat).customer = Nothing AndAlso Me.seats(seat).state = ((Theatre.state)0)">this.seats[seat].customer == default(int) &amp;&amp; this.seats[seat].state == (Theatre.state)0</ensures>
+    </member>
+    <member name="M:Theatre.ITheatre.cancelReservations">
+      <ensures csharp="this.available.Equals(this.max)" vb="Me.available.Equals(Me.max)">this.available.Equals(this.max)</ensures>
+    </member>
+    <member name="M:Theatre.ITheatre.checkCustomer(System.Int32)">
+      <requires csharp="seat &gt; 0 &amp;&amp; !(seat &gt; this.max)" vb="seat &gt; 0 AndAlso Not seat &gt; Me.max">seat &gt; 0 &amp;&amp; !(seat &gt; this.max)</requires>
+    </member>
+  </members>
+</doc>

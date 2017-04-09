@@ -1,0 +1,13 @@
+c:\users\matty\documents\visual studio 2015\Projects\Theatre\Theatre\bin\Debug\Theatre.exe.config
+c:\users\matty\documents\visual studio 2015\Projects\Theatre\Theatre\bin\Debug\Theatre.exe
+c:\users\matty\documents\visual studio 2015\Projects\Theatre\Theatre\bin\Debug\Theatre.pdb
+c:\users\matty\documents\visual studio 2015\Projects\Theatre\Theatre\obj\Debug\Theatre.exe
+c:\users\matty\documents\visual studio 2015\Projects\Theatre\Theatre\obj\Debug\Theatre.pdb
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\obj\Debug\Theatre.csprojResolveAssemblyReference.cache
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\obj\Debug\Theatre.rewritten
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\bin\Debug\Theatre.XML
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\bin\Debug\CodeContracts\Theatre.Contracts.dll
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\bin\Debug\CodeContracts\Theatre.Contracts.pdb
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\obj\Debug\Decl\Theatre.exe
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\obj\Debug\Decl\Theatre.pdb
+C:\Users\matty\Documents\Visual Studio 2015\Projects\Theatre\Theatre\obj\Debug\Theatreccrefgen.rsp

@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Theatre</name>
+    </assembly>
+    <members>
+        <member name="T:Theatre.ITheatre">
+            <summary>
+            Interface class gives the basic set up of the implementation class outlining the functions and properties used
+            </summary>
+        </member>
+        <member name="P:Theatre.ITheatre.available">
+            <summary>
+            Each performance in a theatre will hold the available tickets value
+            </summary>
+        </member>
+        <member name="P:Theatre.ITheatre.seats">
+            <summary>
+            An array of the Seat struct allows each seat to hold the state and customer
+            </summary>
+        </member>
+        <member name="T:Theatre.CTheatre">
+            <summary>
+            Abstract class holds the contracts the implementation class must satisfy
+            </summary>
+        </member>
+        <member name="T:Theatre.state">
+            <summary>
+            Enumerated states for eat seat in a performance
+            </summary>
+        </member>
+        <member name="F:Theatre.state.empty">
+            <summary>
+            Empty is 0 and all seats are set up with the value 0 which allows the theatre to see if it is still empty
+            </summary>
+        </member>
+        <member name="F:Theatre.state.reserved">
+            <summary>
+            once a seat has been reserved the state of the seat will change to reserved
+            </summary>
+        </member>
+        <member name="F:Theatre.state.purchased">
+            <summary>
+            when the seat is bought its state can then be changed to purchased
+            </summary>
+        </member>
+        <member name="F:Theatre.state.unused">
+            <summary>
+            Seats which are not needed for a performance
+            </summary>
+        </member>
+        <member name="T:Theatre.Seat">
+            <summary>
+            struct to store the seats state and customer associated with it
+            </summary>
+        </member>
+        <member name="F:Theatre.Seat.state">
+            <summary>
+            storing the seat state for a performance
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Theatre.Seat.customer" -->
+        <member name="T:Theatre.Theatre">
+            <summary>
+            Implementation class which contains the methods and functions of the theatre
+            </summary>
+        </member>
+        <member name="M:Theatre.Theatre.ObjectInvariant">
+            <summary>
+             Invariants for the performance which it must meet in any method
+            </summary>
+        </member>
+        <member name="M:Theatre.Theatre.#ctor(System.Int32)">
+            <summary>
+            constructor to set up theatre for new performance
+            </summary>
+            <param name="seatsRequired">Holds the amount of seats needed for a performance</param>
+        </member>
+        <member name="P:Theatre.Theatre.Theatre#ITheatre#available">
+            <summary>
+            returning the value of available to the interface
+            </summary>
+        </member>
+        <member name="P:Theatre.Theatre.Theatre#ITheatre#seats">
+            <summary>
+            returning the seats to the interface
+            </summary>
+        </member>
+        <member name="P:Theatre.Theatre.Theatre#ITheatre#max">
+            <summary>
+            returning the max number of seats to the interface
+            </summary>
+        </member>
+        <member name="M:Theatre.Theatre.buySeat(System.Int32,System.Int32)">
+            <summary>
+            Customer can Buy seat for one performance
+            </summary>
+            <param name="customer">Customer id which will be placed into the seat struct</param>
+            <param name="seat">Seat number which will be placed into the seat struct</param>
+            <returns>true</returns>
+        </member>
+        <member name="M:Theatre.Theatre.cancelReservations">
+            <summary>
+            Remove all reservations for a performance
+            </summary>
+            <returns>True</returns>
+        </member>
+        <member name="M:Theatre.Theatre.checkAvailability">
+            <summary>
+            check to see there are any seats left to book
+            </summary>
+            <returns>Amount of seats left to purchase/reserve</returns>
+        </member>
+        <member name="M:Theatre.Theatre.checkCustomer(System.Int32)">
+            <summary>
+            check to see if a customer has a seat
+            </summary>
+            <param name="seat">seat number that will be checked to see if a customer has bought it</param>
+            <returns></returns>
+        </member>
+        <member name="M:Theatre.Theatre.printSeatingPlan">
+            <summary>
+            generate a visual for the layout of seats for a performance 
+            </summary>
+            <returns>Returns a layout for the seats of a performance</returns>
+        </member>
+        <member name="M:Theatre.Theatre.removeReserved">
+            <summary>
+            when there is only 2 hours left till the performance the reserved seats will become available again
+            </summary>
+        </member>
+        <member name="M:Theatre.Theatre.reserveSeat(System.Int32,System.Int32)">
+            <summary>
+            Customer can reserve seat for one performance
+            </summary>
+            <param name="customer">Customer number to be stored into the seat struct</param>
+            <param name="seat">the seat number which stores the customer and state</param>
+            <returns>True</returns>
+        </member>
+        <member name="M:Theatre.Theatre.returnSeat(System.Int32,System.Int32)">
+            <summary>
+            Customer can return seat reservation for one performance
+            </summary>
+            <param name="customer">customer value to check seat matches</param>
+            <param name="seat">seat number that the customer should be assigned to</param>
+            <returns>True</returns>
+        </member>
+    </members>
+</doc>
